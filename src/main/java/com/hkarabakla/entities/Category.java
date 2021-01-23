@@ -41,10 +41,10 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", books=" + books +
-                '}';
+        return
+               // "id=" + id +
+                name + '\''
+              //  ", books=" + books +
+                ;
     }
 }

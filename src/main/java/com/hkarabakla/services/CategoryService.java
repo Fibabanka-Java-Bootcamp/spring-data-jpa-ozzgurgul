@@ -22,10 +22,12 @@ public class CategoryService {
         Book b1 = new Book();
         b1.setIsbn(UUID.randomUUID().toString());
         b1.setName("Spring in Action");
+        b1.setCurrency("in stock");
+        b1.setPrice(21.90);
 
         Category c1 = new Category();
         c1.setName("Computer Science");
-        c1.setBooks(Collections.singletonList(b1));
+        b1.setCategory(c1);
 
         categoryRepo.save(c1);
 

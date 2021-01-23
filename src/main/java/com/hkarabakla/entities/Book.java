@@ -1,6 +1,7 @@
 package com.hkarabakla.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Book {
@@ -10,9 +11,35 @@ public class Book {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    private double price;
+
+    private String currency;
+
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+
+    @ManyToMany(mappedBy = "book")
+    private List<Author> author;
+
+    @ManyToMany(mappedBy = "book")
+    private List<Orders> orders;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -40,9 +67,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return  "Book{" +
                 "isbn='" + isbn + '\'' +
                 ", name='" + name + '\'' +
-                '}';
+                        ", price='" + price + '\'' +
+                        ", currency='" + currency + '\'' +
+                ", category='" + category +
+        '}';
     }
 }
